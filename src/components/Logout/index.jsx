@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { Backdrop, CircularProgress } from "@mui/material";
-import fetchData from "../../lib/fetchData";
+import { useFetchData } from "../../lib/useFetchData";
 
 function Logout() {
     const navigate = useNavigate()
+
+    const fetchData = useFetchData()
 
     useEffect(() => {
         fetchData({
@@ -31,9 +33,8 @@ function Logout() {
                 color: '#fff',
                 zIndex: (theme) => theme.zIndex.drawer + 1,
             }}
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
+        />
+        
     )
 }
 

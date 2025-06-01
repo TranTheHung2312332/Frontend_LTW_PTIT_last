@@ -11,18 +11,20 @@ import {
 
 import LogoutIcon from '@mui/icons-material/Logout'
 
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import "./styles.css"
-import fetchData from "../../lib/fetchData"
 import { red } from "@mui/material/colors"
 import { useGlobalContext } from "../../GlobalContext"
+import { useFetchData } from "../../lib/useFetchData"
 
 /**
  * Define UserList, a React component of Project 4.
  */
 
 function UserList() {
+    const fetchData = useFetchData()
+
     const { setCurrentPage } = useGlobalContext()
 
     const navigate = useNavigate()

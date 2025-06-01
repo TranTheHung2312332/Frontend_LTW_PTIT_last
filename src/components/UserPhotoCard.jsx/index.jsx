@@ -1,11 +1,11 @@
 import { Avatar, Card, CardContent, CardHeader, CardMedia, IconButton, Stack, Typography, Divider, Box, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material"
 import { Link } from "react-router-dom";
 import { Link as MuiLink } from '@mui/material';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SendIcon from '@mui/icons-material/Send';
-import fetchData from "../../lib/fetchData";
 import { red } from '@mui/material/colors';
 import CommentIcon from '@mui/icons-material/Comment';
+import { useFetchData } from "../../lib/useFetchData";
 
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -24,6 +24,8 @@ const dateTimeFormat = (datetime) => {
 }
 
 const UserPhotoCard = ({photo}) => {  
+    const fetchData = useFetchData()
+    
     const [open, setOpen] = useState(false)
     const [newComment, setNewComment] = useState('')  
     const [comments, setComments] = useState(photo.comments)

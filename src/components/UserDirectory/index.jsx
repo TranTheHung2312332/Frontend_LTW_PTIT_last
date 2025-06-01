@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Box, Grid, Card, CardContent, Typography, Avatar, CardActionArea } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import fetchData from '../../lib/fetchData'
 import { red } from '@mui/material/colors'
+import { useFetchData } from '../../lib/useFetchData'
 
 function UserDirectory() {
+    const fetchData = useFetchData()
+
     const [users, setUsers] = useState([])
     const navigate = useNavigate()
 

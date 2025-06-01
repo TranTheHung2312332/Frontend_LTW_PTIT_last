@@ -1,17 +1,17 @@
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import fetchData from '../../lib/fetchData'
+import { useFetchData } from '../../lib/useFetchData'
 
 const AddPhoto = ({ open, onClose, onSuccess }) => {
+    const fetchData = useFetchData()
+
     const [file, setFile] = useState(null)
-    const [loading, setLoading] = useState(false);
 
     const handleFileChange = e => {
         setFile(e.target.files[0])
@@ -24,8 +24,6 @@ const AddPhoto = ({ open, onClose, onSuccess }) => {
 
     const handleUpload = e => {
         if(!file) return
-
-        setLoading(true)
 
         const formData = new FormData()
         formData.append('photo', file)
@@ -42,7 +40,7 @@ const AddPhoto = ({ open, onClose, onSuccess }) => {
             },
             success: onSuccess,
             error: (err) => alert(err)
-        }).finally(() => setLoading(false))
+        })
     }
 
     return (
@@ -79,9 +77,8 @@ const AddPhoto = ({ open, onClose, onSuccess }) => {
                     onClick={handleUpload}
                     variant="contained"
                     color="primary"
-                    disabled={loading}
                 >
-                    {loading ? 'Uploading...' : 'Upload'}
+                    Upload
                 </Button>
             </DialogActions>
         </Dialog>

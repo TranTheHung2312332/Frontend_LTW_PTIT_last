@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {Box, Button, Divider, Stack, Typography} from "@mui/material";
 
 import "./styles.css";
-import {useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 
 import { Link } from 'react-router-dom';
-import fetchData from "../../lib/fetchData";
+import { useFetchData } from "../../lib/useFetchData";
 
 /**
  * Define UserDetail, a React component of Project 4.
  */
 function UserDetail() {
-    const navigate = useNavigate()
+    const fetchData = useFetchData()
 
-    let user = useParams();    
+    const {userId} = useParams();    
     
     const [userInfo, setUserInfo] = useState({
         first_name: null,
@@ -26,7 +26,7 @@ function UserDetail() {
 
     useEffect(() => {
         fetchData({
-            endpoint: `/user/${user.userId}`,
+            endpoint: `/user/${userId}`,
             option: {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -35,7 +35,7 @@ function UserDetail() {
             success: setUserInfo,
             error: (err) => alert(err)
         })
-    }, [user])
+    }, [userId])
 
     return (
         <>

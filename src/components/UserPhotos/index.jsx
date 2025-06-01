@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, List, ListItem, Paper, Stack, Typography } from "@mui/material";
 
 import "./styles.css";
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 
-import { Link } from 'react-router-dom'
-import fetchData from "../../lib/fetchData";
 import UserPhotoCard from "../UserPhotoCard.jsx";
 
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import AddPhoto from "../AddPhoto/index.jsx";
+import { useFetchData } from "../../lib/useFetchData.js";
 
 /**
  * Define UserPhotos, a React component of Project 4.
@@ -18,6 +17,8 @@ import AddPhoto from "../AddPhoto/index.jsx";
 
 
 function UserPhotos () {
+    const fetchData = useFetchData()
+
     const {userId} = useParams();
 
     const currentUserId = localStorage.getItem('userId');
@@ -33,7 +34,7 @@ function UserPhotos () {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             },
-            success: setPhotos,
+            success: (json) => setPhotos(json.reverse()),
             error: (err) => alert(err)
         })
     }, [])
@@ -46,7 +47,7 @@ function UserPhotos () {
                 open={openAddDialog}
                 onClose={() => setOpenAddDialog(false)}
                 onSuccess={json => {
-                    setPhotos(old => [...old, json])
+                    setPhotos(old => [json, ...old])
                     alert("Successfully")
                     setOpenAddDialog(false)
                 }}

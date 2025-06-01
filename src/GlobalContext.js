@@ -4,9 +4,12 @@ const GlobalContext = createContext()
 
 export const GlobalProvider = ({ children }) => {
     const [currentPage, setCurrentPage] = useState('Home')
+    const [loading, setLoading] = useState(false)
 
+    const contextValue = { currentPage, setCurrentPage, loading, setLoading }
+ 
     return (
-        <GlobalContext.Provider value={{currentPage, setCurrentPage}}>
+        <GlobalContext.Provider value={contextValue}>
             {children}
         </GlobalContext.Provider>
     )

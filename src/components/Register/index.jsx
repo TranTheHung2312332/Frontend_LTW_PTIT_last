@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import fetchData from "../../lib/fetchData"
 
 import {
     TextField,
@@ -11,8 +10,11 @@ import {
     Stack,
     Alert
 } from "@mui/material"
+import { useFetchData } from "../../lib/useFetchData"
 
 const Register = () => {
+    const fetchData = useFetchData()
+
     const navigate = useNavigate()
 
     const location = useLocation()
