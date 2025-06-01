@@ -1,0 +1,87 @@
+.photos {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+
+}
+  
+.photos-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+  
+.photo-content {
+    text-align: center;
+    margin-bottom: 15px;
+}
+  
+.photo-content img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+  
+.photo-content p {
+    font-size: 13px;
+    color: #777;
+    margin-top: 8px;
+}
+  
+.comments {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+  
+.comments li {
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+  
+.comments li h3 {
+    margin: 0;
+    font-size: 15px;
+    color: #0077cc;
+}
+  
+.comment-datetime {
+    font-size: 12px;
+    color: #7a7878;
+    margin-top: 2px;
+}
+  
+.comment-content {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #333;
+}
+  
+.no-comment {
+    font-style: italic;
+    color: #aaa;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+.MuiPaper-root:has(.photos) {
+    max-height: 100vh;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+}
+  
